@@ -15,10 +15,10 @@ public class ActionSimple extends Action {
     }
 
     /**
-     * 
+     * A reprendre plus tard
      * @return double
      */
-    public double getValeur() {
+    public double calculerValeurDate() {
         return 0;
     }
 }

@@ -22,10 +22,16 @@ public abstract class Action {
      * @param nom
      * @param description
      */
-    public Action(String libelle, String nom, String description) {
+    public Action(String libelle, String nom, String description) throws IllegalArgumentException {
+        if (libelle.length() != 3 && libelle.length() != 4) {
+            throw new IllegalArgumentException("Le libellé doit contenir 3 à 4 caractères");
+        }
+
         this.libelle = libelle;
         this.nom = nom;
         this.description = description;
+
+
     }
     /**
      * Getter de l'attribut libelle
