@@ -1,5 +1,58 @@
 package actions.metier;
-
+/**
+ * Classe abstraite Action à réimplémenter pour chaque type d'action
+ */
 public abstract class Action {
+    /**
+     * Libelle de l'action (ex: "AAPL" pour Apple)
+     */
+    private String libelle; 
+    /**
+     * Nom de l'action (ex: "Apple")
+     */
+    private String nom;
+    /**
+     * Description de l'action (ex: "Action Apple Inc...")
+     */
+    private String description;
 
+    /**
+     * Constructeur de la classe Action
+     * @param libelle
+     * @param nom
+     * @param description
+     */
+    public Action(String libelle, String nom, String description) {
+        this.libelle = libelle;
+        this.nom = nom;
+        this.description = description;
+    }
+    /**
+     * Getter de l'attribut libelle
+     * @return String
+     */
+    public String getLibelle() {
+        return libelle;
+    }
+    /**
+     * Getter de l'attribut nom
+     * @return String
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * Getter de l'attribut description
+     * @return String
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Calcul de la valeur de l'action à une date donnée (à réimplémenter pour chaque type d'action)
+     * @return double
+     */
+    public abstract double calculerValeurDate();
 }
