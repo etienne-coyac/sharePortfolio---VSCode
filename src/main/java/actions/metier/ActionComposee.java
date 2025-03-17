@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class ActionComposee extends Action {
-    private HashMap<ActionSimple, BigDecimal> ListActionSimple;
+    HashMap<ActionSimple, BigDecimal> ListActionSimple;
     private String libelle;
     private String nom;
     private String description;

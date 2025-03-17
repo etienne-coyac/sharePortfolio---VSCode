@@ -24,4 +24,10 @@ public class ActionSimple extends Action {
     public double getValeur(Date date) {
         return 0;
     }
+
+    @Override
+    public double calculerValeurDate(java.util.Date date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'calculerValeurDate'");
+    }
 }
