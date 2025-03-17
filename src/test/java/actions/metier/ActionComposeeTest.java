@@ -35,4 +35,20 @@ public class ActionComposeeTest {
         Assertions.assertEquals(new BigDecimal("0.4"), actionComposee.ListActionSimple.get(actionSimple2));
         Assertions.assertTrue(actionComposee.ListActionSimple.containsKey(actionSimple2));
     }
+
+    @Test
+    public void ActionComposeeTest2() {
+        actionComposee.addActionsimple(actionSimple1, new BigDecimal("0.6"));
+        actionComposee.addActionsimple(actionSimple2, new BigDecimal("0.4"));
+        actionComposee.removeActionsimple(actionSimple1);
+        Assertions.assertFalse(actionComposee.ListActionSimple.containsKey(actionSimple1));
+    }
+
+    @Test
+    public void ActionComposeeTest3() {
+        actionComposee.addActionsimple(actionSimple1, new BigDecimal("0.6"));
+        actionComposee.addActionsimple(actionSimple2, new BigDecimal("0.4"));
+        actionComposee.updatePourcentage(actionSimple1, new BigDecimal("0.5"));
+        Assertions.assertEquals(new BigDecimal("0.5"), actionComposee.ListActionSimple.get(actionSimple1));
+    }
 }

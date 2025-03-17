@@ -67,9 +67,13 @@ public class ActionComposee extends Action {
     }
 
     
+    public void updatePourcentage(ActionSimple actionSimple, BigDecimal pourcentage) {
+        ListActionSimple.put(actionSimple, pourcentage);
+    }
 
-
-
+    public HashMap<ActionSimple, BigDecimal> getListActionSimple() {
+        return ListActionSimple;
+    }
 
 
 
