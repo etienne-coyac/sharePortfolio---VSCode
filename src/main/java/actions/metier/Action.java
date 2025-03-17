@@ -1,4 +1,7 @@
 package actions.metier;
+
+import java.util.Date;
+
 /**
  * Classe abstraite Action à réimplémenter pour chaque type d'action
  */
@@ -27,6 +30,15 @@ public abstract class Action {
         this.nom = nom;
         this.description = description;
     }
+
+    /**
+     * Constructeur VIDE de la classe Action
+     */
+    public Action() {
+        this.libelle = "";
+        this.nom = "";
+        this.description = "";
+    }
     /**
      * Getter de l'attribut libelle
      * @return String
@@ -54,5 +66,5 @@ public abstract class Action {
      * Calcul de la valeur de l'action à une date donnée (à réimplémenter pour chaque type d'action)
      * @return double
      */
-    public abstract double calculerValeurDate();
+    public abstract double calculerValeurDate(Date date);
 }

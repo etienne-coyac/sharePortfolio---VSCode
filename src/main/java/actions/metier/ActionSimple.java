@@ -1,5 +1,8 @@
 
 package actions.metier;
+
+import java.sql.Date;
+
 /**
  * Classe ActionSimple héritant de la classe abstraite Action
  */
@@ -18,7 +21,7 @@ public class ActionSimple extends Action {
      * 
      * @return double
      */
-    public double getValeur() {
+    public double getValeur(Date date) {
         return 0;
     }
 }

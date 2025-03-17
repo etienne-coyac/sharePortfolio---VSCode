@@ -2,6 +2,7 @@
 package actions.metier;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ActionComposee extends Action {
@@ -21,7 +22,7 @@ public class ActionComposee extends Action {
     }
     
 
-    public void getLibelle() {
+    public String getLibelle() {
         return libelle;
     }
 
@@ -29,7 +30,7 @@ public class ActionComposee extends Action {
         this.libelle = libelle;
     }
 
-    public void getNom() {
+    public String getNom() {
         return nom;
     }
 
@@ -37,7 +38,7 @@ public class ActionComposee extends Action {
         this.nom = nom;
     }
 
-    public void getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -53,12 +54,14 @@ public class ActionComposee extends Action {
         ListActionSimple.remove(actionSimple);
     }
 
-    public void getValeur(Date date) {
+
+    //waiting for the implementation of getValeurByDate in ActionSimple
+    public double calculerValeurDate(Date date) {
         //ici on va calculer la valeur de l'action composée
         //faut implémenter la méthode getValeurByDate dans ActionSimple/cours
-        BigDecimal valeur = new BigDecimal(0);
+        Double valeur = 0.0;
         for (ActionSimple actionSimple : ListActionSimple.keySet()) {
-            valeur = valeur.add(actionSimple.getValeur(date).multiply(ListActionSimple.get(actionSimple)));
+            // valeur = valeur.add(actionSimple.getValeur(date).multiply(ListActionSimple.get(actionSimple)));
         }
         return valeur;
     }
