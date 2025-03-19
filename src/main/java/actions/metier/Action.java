@@ -22,14 +22,14 @@ public abstract class Action {
      * @param nom
      * @param description
      */
-    public Action(String libelle, String nom, String description) throws IllegalArgumentException {
+    protected Action(String libelle, String nom, String description) throws IllegalArgumentException {
         if (libelle == null || libelle.length() != 3 && libelle.length() != 4) {
             throw new IllegalArgumentException("Le libellé doit contenir 3 à 4 caractères");
         }
-        if (nom == null || nom.length() <1){
+        if (nom == null || nom.isEmpty()){
             throw new IllegalArgumentException("Le nom doit contenir au moins 1 caractère");
         }
-        if (description == null || description.length() <1){
+        if (description == null || description.isEmpty()){
             throw new IllegalArgumentException("La description doit contenir au moins 1 caractère");
         }
 

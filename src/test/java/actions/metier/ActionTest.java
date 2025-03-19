@@ -10,7 +10,7 @@ class ActionTest {
 
     // TESTS LIBELLE 
     @Test
-	public void testLongueurLibelleIncorrect_ShouldFail() {
+	void testLongueurLibelleIncorrect_ShouldFail() {
         final String libelleATester = "AA";
         
         assertThrows(
@@ -20,7 +20,7 @@ class ActionTest {
 	}
     
     @Test
-	public void testLongueurLibelleIsNull_ShouldFail() {
+	void testLongueurLibelleIsNull_ShouldFail() {
         assertThrows(
         IllegalArgumentException.class,() -> {
 			 new ActionSimple(null, "Apple", "Action Apple Inc...");
@@ -28,7 +28,7 @@ class ActionTest {
 	}
 
     @Test
-    public void testLongueurLibelleCorrectLongueur3_ShouldPass() {
+    void testLongueurLibelleCorrectLongueur3_ShouldPass() {
         final String libelleATesterLongueur3 = "APP";
         
         assertDoesNotThrow(() -> {
@@ -38,7 +38,7 @@ class ActionTest {
 	}
 
     @Test
-    public void testLongueurLibelleCorrectLongueur4_ShouldPass() {
+    void testLongueurLibelleCorrectLongueur4_ShouldPass() {
         final String libelleATesterLongueur4 = "APPL";
         assertDoesNotThrow(() -> {
              new ActionSimple(libelleATesterLongueur4, "Apple", "Action Apple Inc...");
@@ -50,7 +50,7 @@ class ActionTest {
     // TESTS DESCRIPTION
 
     @Test
-    public void testLongueurDescriptionIsNull_ShouldFail() {
+    void testLongueurDescriptionIsNull_ShouldFail() {
         String descriptionNulle = null;
         assertThrows(
         IllegalArgumentException.class,() -> {
@@ -59,7 +59,7 @@ class ActionTest {
     }
 
     @Test
-    public void testLongueurDescriptionIsEmpty_ShouldFail() {
+    void testLongueurDescriptionIsEmpty_ShouldFail() {
         String descriptionVide = "";
         assertThrows(
         IllegalArgumentException.class,() -> {
@@ -68,7 +68,7 @@ class ActionTest {
     }
 
     @Test
-    public void testLongueurDescriptionIsCorrect_ShouldPass() {
+    void testLongueurDescriptionIsCorrect_ShouldPass() {
         String descriptionCorrecte = "Action Apple Inc...";
         assertDoesNotThrow(() -> {
              new ActionSimple("AAPL", "Apple", descriptionCorrecte);
@@ -76,7 +76,7 @@ class ActionTest {
     }
 
     // TESTS NOM
-    public void testLongueurNomIsNull_ShouldFail() {
+    void testLongueurNomIsNull_ShouldFail() {
         String nomNul = null;
         assertThrows(
         IllegalArgumentException.class,() -> {
