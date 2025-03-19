@@ -39,7 +39,7 @@ class CatalogueTest {
 
     @Test
     void testActionAlreadyExists() {
-        Action actionDuplicate = new ActionImpl("testLibelle", testActionName, "testDesc")
+        Action actionDuplicate = new ActionImpl("testLibelle", testActionName, "testDesc");
         assertThrows(IllegalArgumentException.class, () -> {
             catalogue.addAction(actionDuplicate);
         });
