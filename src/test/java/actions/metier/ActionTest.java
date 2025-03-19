@@ -2,6 +2,8 @@
 package actions.metier;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -76,6 +78,7 @@ class ActionTest {
     }
 
     // TESTS NOM
+    @Test
     void testLongueurNomIsNull_ShouldFail() {
         String nomNul = null;
         assertThrows(
@@ -84,7 +87,8 @@ class ActionTest {
         }); 
     }
 
-    public void testLongueurNomIsEmpty_ShouldFail() {
+    @Test
+    void testLongueurNomIsEmpty_ShouldFail() {
         String nomVide = "";
         assertThrows(
         IllegalArgumentException.class,() -> {
@@ -92,11 +96,33 @@ class ActionTest {
         }); 
     }
 
-    public void testLongueurNomIsCorrect_ShouldPass() {
+    @Test
+    void testLongueurNomIsCorrect_ShouldPass() {
         String nomCorrect = "Apple";
         assertDoesNotThrow(() -> {
              new ActionSimple("AAPL", nomCorrect, "Action Apple Inc...");
         }); 
+    }
+    @Test
+    void testToString_ShouldPass() {
+        String description = "Action Apple Inc...";
+        String libelle = "AAPL";
+        String nom = "Apple";
+        ActionSimple action = new ActionSimple(libelle,nom, description);
+        String expected = "Action [ " + libelle + " : nom=" + nom + ", description=" + description + "]";
+
+        assertEquals(expected, action.toString());
+    }
+
+    @Test
+    void testToString_ShouldFail() {
+        String description = "Action Apple Inc...";
+        String libelle = "AAPL";
+        String nom = "Apple";
+        ActionSimple action = new ActionSimple(libelle,nom, description);
+        String wrongDisplay = "Actiond [ " + libelle + " : nom=" + nom + ", description=" + description + "]";
+
+        assertNotEquals(wrongDisplay, action.toString());
     }
 
 
