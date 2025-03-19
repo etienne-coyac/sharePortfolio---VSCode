@@ -18,10 +18,10 @@ public class ActionSimple extends Action {
     }
 
     /**
-     * 
+     * A reprendre plus tard
      * @return double
      */
-    public double getValeur(Date date) {
+    public double calculerValeurDate(Date date) {
         return 0;
     }
 

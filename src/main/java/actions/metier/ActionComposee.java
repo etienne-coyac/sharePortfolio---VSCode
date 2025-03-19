@@ -6,52 +6,59 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class ActionComposee extends Action {
-    HashMap<ActionSimple, BigDecimal> ListActionSimple;
+    HashMap<ActionSimple, Double> ListActionSimple;
     private String libelle;
     private String nom;
     private String description;
 
     public ActionComposee(String libelle, String nom, String description) {
         super(libelle,nom,description);
-        ListActionSimple = new HashMap<ActionSimple, BigDecimal>();
+        ListActionSimple = new HashMap<ActionSimple, Double>();
     }
 
-    public ActionComposee(){
-        super();
-        ListActionSimple = new HashMap<ActionSimple, BigDecimal>();
-    }
-    
 
-    public String getLibelle() {
-        return libelle;
-    }
+    public void addActionsimple(ActionSimple actionSimple, double pourcentageInsert) throws IllegalArgumentException {
+        if (pourcentageInsert > 1.0 || pourcentageInsert <= 0.0) {
+            throw new IllegalArgumentException("Le pourcentage ne peut pas être supérieur à 1 ou inférieur à 0");
+        }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
+        if (ListActionSimple.isEmpty()) {
+            ListActionSimple.put(actionSimple, 1.0d);
+            return;
+        }
 
-    public String getNom() {
-        return nom;
-    }
+        if (ListActionSimple.containsKey(actionSimple)) {
+            throw new IllegalArgumentException("L'action existe déjà dans la liste");
+        }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
-    public String getDescription() {
-        return description;
+        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
+            ListActionSimple.put(actionSimple1, newPourcentageInsert(pourcentageInsert, ListActionSimple.get(actionSimple1)));
+        }
+        ListActionSimple.put(actionSimple, pourcentageInsert);
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public void addActionsimple(ActionSimple actionSimple, BigDecimal pourcentage) {
-        ListActionSimple.put(actionSimple, pourcentage);
-    }
+    public void removeActionsimple(ActionSimple actionSimple) throws IllegalArgumentException {
+        if(!ListActionSimple.containsKey(actionSimple)) {
+            throw new IllegalArgumentException("L'action n'existe pas dans la liste");
+        }
 
-    public void removeActionsimple(ActionSimple actionSimple) {
+        double pourcentageToRemove = ListActionSimple.get(actionSimple);
         ListActionSimple.remove(actionSimple);
+        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
+            ListActionSimple.put(actionSimple1, newPourcentageRemove(pourcentageToRemove, ListActionSimple.get(actionSimple1)));
+        }
+    }
+
+    private double newPourcentageInsert (double pourcentageInsert, double actualPourcentage) {
+        double newPourcentage = actualPourcentage * (1.0d - pourcentageInsert);
+        return newPourcentage;
+    }
+
+    private double newPourcentageRemove (double pourcentageInsert, double actualPourcentage) {
+        double newPourcentage = actualPourcentage / (1.0d - pourcentageInsert);
+        return newPourcentage;
     }
 
 
@@ -67,11 +74,31 @@ public class ActionComposee extends Action {
     }
 
     
-    public void updatePourcentage(ActionSimple actionSimple, BigDecimal pourcentage) {
-        ListActionSimple.put(actionSimple, pourcentage);
-    }
+    // public void updatePourcentage(ActionSimple actionSimple, double newPourcentage) {
+    //     if (!ListActionSimple.containsKey(actionSimple)) {
+    //         throw new IllegalArgumentException("L'action n'existe pas dans la liste");
+    //     }
 
-    public HashMap<ActionSimple, BigDecimal> getListActionSimple() {
+    //     if (newPourcentage > 1.0 || newPourcentage <= 0.0) {
+    //         throw new IllegalArgumentException("Le pourcentage ne peut pas être supérieur à 1 ou inférieur à 0");
+    //     }
+
+        
+        
+    //     System.out.println("size " + ListActionSimple.size());
+    //     for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
+    //         if (!actionSimple1.equals(actionSimple)) {
+    //             ListActionSimple.put(actionSimple1, ListActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - ListActionSimple.get(actionSimple)));
+    //             System.out.println("action simple : " + actionSimple1.getLibelle());
+    //             System.out.println("pourcentage : " + ListActionSimple.get(actionSimple1));
+    //         }
+    //     }
+
+    //     ListActionSimple.put(actionSimple, newPourcentage);
+            
+    // }
+
+    public HashMap<ActionSimple, Double> getListActionSimple() {
         return ListActionSimple;
     }
 

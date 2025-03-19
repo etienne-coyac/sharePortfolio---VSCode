@@ -4,7 +4,7 @@
 - Thomas Pirovano
 - Diego Cortes
 - Hongjin Gu
-- Zhan He Zang
+- Zhan He Zhang
 - Klervi Le Montreer
 
 ### Sonar
