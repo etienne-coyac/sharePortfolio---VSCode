@@ -25,7 +25,10 @@ public class Catalogue {
      * 
      * @param a action
      */
-    public void addAction(Action a) {
+    public void addAction(Action a) throws IllegalArgumentException {
+        if (this.actions.contains(a)) {
+            throw new IllegalArgumentException("L'action " + a.getNom() + " est déjà listée dans le catalogue.");
+        }
         this.actions.add(a);
     }
 

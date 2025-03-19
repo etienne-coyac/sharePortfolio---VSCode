@@ -23,18 +23,26 @@ class CatalogueTest {
     }
 
     private Catalogue catalogue;
-    private String testActionName = "testNom";
+    private final String testActionName = "testNom";
+    private final Action action = new ActionImpl("testLibelle", testActionName, "testDesc");
 
     @BeforeEach
     void createCatalogue() {
         this.catalogue = new Catalogue();
-        final Action action = new ActionImpl("testLibelle", testActionName, "testDesc");
         catalogue.addAction(action);
     }
 
     @Test
     void testAddAction() {
         Assertions.assertEquals(1, catalogue.getActions().size());
+    }
+
+    @Test
+    void testActionAlreadyExists() {
+        Action actionDuplicate = new ActionImpl("testLibelle", testActionName, "testDesc")
+        assertThrows(IllegalArgumentException.class, () -> {
+            catalogue.addAction(actionDuplicate);
+        });
     }
 
     @Test
