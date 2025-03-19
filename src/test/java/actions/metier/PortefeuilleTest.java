@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ class PortefeuilleTest {
      * Test validé si le résultat du assertEquals est "true"
      */
     @Test
-    public void testAutoIncrementId() {
+    void testAutoIncrementId() {
         Portefeuille port1 = new Portefeuille();
         Portefeuille port2 = new Portefeuille();
 
@@ -30,7 +29,7 @@ class PortefeuilleTest {
      * Test validé si le résultat du assertEquals est "true"
      */
     @Test
-    public void testAddAction() {
+    void testAddAction() {
         Portefeuille port = new Portefeuille();
         ActionSimple act = new ActionSimple("France2", null, null);
 
@@ -45,7 +44,7 @@ class PortefeuilleTest {
      * Test validé si le résultat du assertEquals est "true"
      */
     @Test
-    public void testRemoveAction() {
+    void testRemoveAction() {
         Portefeuille port = new Portefeuille();
         ActionSimple act = new ActionSimple("France2", null, null);
 
@@ -63,7 +62,7 @@ class PortefeuilleTest {
      * Test validé si le résulté du assertTrue est "true"
      */
     @Test
-    public void isEmptyTest(){
+    void isEmptyTest(){
         Portefeuille port = new Portefeuille();
         assertTrue(port.isEmpty());
     }
@@ -73,7 +72,7 @@ class PortefeuilleTest {
      * Test validé si le résulté du assertFalse est "true"
      */
     @Test
-    public void isNotEmptyTest(){
+    void isNotEmptyTest(){
         Portefeuille port = new Portefeuille();
         ActionSimple act = new ActionSimple("France2", null, null);
         port.addAction(act);
@@ -81,13 +80,13 @@ class PortefeuilleTest {
     }
 
     @Test 
-    public void toStringTest(){
+    void toStringTest(){
         Portefeuille port = new Portefeuille();
         assertEquals("Portefeuille [identifiant=1 , listeActions=[]]", port.toString());
     }
 
     @Test
-    public void getListeActionTest() {
+    void getListeActionTest() {
         Portefeuille port = new Portefeuille(); 
         assertEquals(new ArrayList<>() , port.getListeActions());
     }
