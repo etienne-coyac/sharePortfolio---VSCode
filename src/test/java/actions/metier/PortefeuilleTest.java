@@ -90,5 +90,18 @@ class PortefeuilleTest {
         Portefeuille port = new Portefeuille(); 
         assertEquals(new ArrayList<>() , port.getListeActions());
     }
+
+    @Test
+    void alimenterPortefeuilleTest() {
+        int montant1 = 100;
+        int montant2 = 50;
+
+        Portefeuille port = new Portefeuille();
+        port.alimenterPortefeuille(montant1);
+        assertEquals(100, port.getSolde());
+        port.alimenterPortefeuille(montant2);
+        assertEquals(150, port.getSolde());
+
+    }
     
 }
