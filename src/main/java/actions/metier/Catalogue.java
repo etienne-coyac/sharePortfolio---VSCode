@@ -27,7 +27,8 @@ public class Catalogue {
      */
     public void addAction(Action a) throws IllegalArgumentException {
         if (this.actions.contains(a)) {
-            throw new IllegalArgumentException("L'action " + a.getNom() + " est déjà listée dans le catalogue.");
+            throw new IllegalArgumentException(
+                    String.format("L'action %s est déjà listée dans le catalogue.", a.getNom()));
         }
         this.actions.add(a);
     }
@@ -50,7 +51,7 @@ public class Catalogue {
     public void deleteActionByName(String name) throws NoSuchElementException {
         boolean deleted = this.actions.removeIf(a -> a.getNom().equals(name));
         if (!deleted) {
-            throw new NoSuchElementException("L'action " + name + " n'existe pas.");
+            throw new NoSuchElementException(String.format("L'action %s n'existe pas.", name));
         }
     }
 
@@ -66,6 +67,6 @@ public class Catalogue {
         if (action.isPresent()) {
             return action.get();
         }
-        throw new NoSuchElementException("L'action " + name + " n'existe pas.");
+        throw new NoSuchElementException(String.format("L'action %s n'existe pas.", name));
     }
 }
