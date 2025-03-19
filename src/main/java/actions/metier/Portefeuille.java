@@ -44,7 +44,6 @@ public class Portefeuille {
         return listeActions;
     }
 
-    
     /**
      * Ajout d'une action dans la liste
      * 
@@ -55,6 +54,27 @@ public class Portefeuille {
             this.listeActions.add(act);
         }
     }
+
+    /**
+     * Suppression d'une action présente dans la liste
+     * 
+     * @param act L'action a été enregistrée
+     */
+    public void removeAction(Action act) {
+        if (act != null) {
+            this.listeActions.remove(act);
+        }
+    }
+
+    /**
+     * Vérification si la liste est vide
+     * 
+     * @return true si la liste est vide
+     */
+    public boolean isEmpty() {
+        List<Action> liste = getListeActions();
+        return liste.isEmpty();
+    }    
 
     /**
      * Retourne l'identifiant du portefeuille
@@ -68,6 +88,34 @@ public class Portefeuille {
     @Override
     public String toString() {
         return "Portefeuille [identifiant=" + identifiant + ", listeActions=" + listeActions + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + identifiant;
+        result = prime * result + ((listeActions == null) ? 0 : listeActions.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Portefeuille other = (Portefeuille) obj;
+        if (identifiant != other.identifiant)
+            return false;
+        if (listeActions == null) {
+            if (other.listeActions != null)
+                return false;
+        } else if (!listeActions.equals(other.listeActions))
+            return false;
+        return true;
     }
     
 }
