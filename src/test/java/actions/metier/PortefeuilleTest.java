@@ -69,14 +69,18 @@ class PortefeuilleTest {
         assertTrue(port.isEmpty());
     }
 
+    /**
+     * Test du calcul du montant total d'un portefeuille
+     * Test validé si la somme retournée est égale à celle estimée
+     */
     @Test
     void calculerPortefeuilleTest() {
         Date dateTest = new Date();
         Portefeuille port = new Portefeuille();
-        ActionSimple aS1 = new ActionSimple("ac1", "action1", "");
-        ActionSimple aS2 = new ActionSimple("ac2", "action2", "");
-        ActionComposee aC1 = new ActionComposee("ac3", "action3", "");
-        aC1.addActionsimple(aS2, 20);
+        ActionSimple aS1 = new ActionSimple("ac1", "action1", "njn");
+        ActionSimple aS2 = new ActionSimple("ac2", "action2", "ndf");
+        ActionComposee aC1 = new ActionComposee("ac3", "action3", "dddj");
+        aC1.addActionsimple(aS2, 0.3);
         double sommeTot = 0;
 
         port.addAction(aC1);
@@ -87,7 +91,7 @@ class PortefeuilleTest {
             sommeTot += action.calculerValeurDate(dateTest);
         }
 
-        assertEquals( , sommeTot);
+        assertEquals(10 , sommeTot);
 
     }
 
