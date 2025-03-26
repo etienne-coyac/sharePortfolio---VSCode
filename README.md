@@ -4,8 +4,13 @@
 - Thomas Pirovano
 - Diego Cortes
 - Hongjin Gu
-- Zhan He Zang
+- Zhan He Zhang
 - Klervi Le Montreer
+- Valeria Villanueva
+
+## Diagramme de classes
+
+![uml](uml.png)
 
 ### Sonar
 
