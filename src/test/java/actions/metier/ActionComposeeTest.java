@@ -68,16 +68,16 @@ class ActionComposeeTest {
         Assertions.assertEquals(1.0, actionComposee.listActionSimple.get(actionSimple2));
     }
 
-    // //test update pourcentage
-    // @Test
-    // void ActionComposeeTest_modification_pourcentage_actionSimple_check_pourcentage_shouldPass() {
-    //     actionComposee.addActionsimple(actionSimple1, 0.5d);
-    //     actionComposee.addActionsimple(actionSimple2, 0.5d);
-    //     actionComposee.addActionsimple(actionSimple3, 0.5d);
-    //     actionComposee.updatePourcentage(actionSimple3, 0.8d);
-    //     Assertions.assertEquals(0.8d, actionComposee.ListActionSimple.get(actionSimple3));
-    //     Assertions.assertEquals(0.1d, actionComposee.ListActionSimple.get(actionSimple1));
+    //test update pourcentage
+    @Test
+    void ActionComposeeTest_modification_pourcentage_actionSimple_check_pourcentage_shouldPass() {
+        actionComposee.addActionsimple(actionSimple1, 0.5d);
+        actionComposee.addActionsimple(actionSimple2, 0.5d);
+        actionComposee.addActionsimple(actionSimple3, 0.5d);
+        actionComposee.updatePourcentage(actionSimple3, 0.8d);
+        Assertions.assertEquals(0.8d, actionComposee.listActionSimple.get(actionSimple3),0.000001); //un peu de biais est permis a cause de la division
+        Assertions.assertEquals(0.1d, actionComposee.listActionSimple.get(actionSimple1),0.000001); //un peu de biais est permis a cause de la division
         
 
-    // }
+    }
 }
