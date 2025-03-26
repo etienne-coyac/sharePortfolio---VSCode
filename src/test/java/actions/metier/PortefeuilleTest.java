@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ class PortefeuilleTest {
     @Test
     void testAddAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("Fr2", "france2", "jjj");
 
         port.addAction(act);
 
@@ -47,7 +48,7 @@ class PortefeuilleTest {
     @Test
     void testRemoveAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("Fr2", "france2", "jnfjn");
 
         port.addAction(act);
 
@@ -70,21 +71,23 @@ class PortefeuilleTest {
 
     @Test
     void calculerPortefeuilleTest() {
-        Date aujourdhui = new Date();
+        Date dateTest = new Date();
         Portefeuille port = new Portefeuille();
-        ActionSimple aS1 = new ActionSimple("action1", "action1", "");
-        ActionSimple aS2 = new ActionSimple("action2", "action2", "");
-        ActionComposee aC1 = new ActionComposee("action3", "action3", "");
+        ActionSimple aS1 = new ActionSimple("ac1", "action1", "");
+        ActionSimple aS2 = new ActionSimple("ac2", "action2", "");
+        ActionComposee aC1 = new ActionComposee("ac3", "action3", "");
         aC1.addActionsimple(aS2, 20);
         double sommeTot = 0;
 
         port.addAction(aC1);
         port.addAction(aS1);
         
-        sommeTot += aS1.calculerValeurDate(aujourdhui);
-        for (iterable_type iterable_element : iterable) {
-            
+        List<Action> listeActions = port.getListeActions();
+        for (Action action : listeActions) {
+            sommeTot += action.calculerValeurDate(dateTest);
         }
+
+        assertEquals( , sommeTot);
 
     }
 
@@ -95,7 +98,7 @@ class PortefeuilleTest {
     @Test
     void isNotEmptyTest(){
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("Fr2", "france2", "fknffd");
         port.addAction(act);
         assertFalse(port.isEmpty());
     }
@@ -103,7 +106,7 @@ class PortefeuilleTest {
     @Test 
     void toStringTest(){
         Portefeuille port = new Portefeuille();
-        assertEquals("Portefeuille [identifiant=1 , listeActions=[]]", port.toString());
+        assertEquals("Portefeuille [identifiant=1, listeActions=[]]", port.toString());
     }
 
     @Test

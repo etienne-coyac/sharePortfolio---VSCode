@@ -118,12 +118,7 @@ public class Portefeuille {
         Date aujourdhui = new Date();
         List<Action> liste = getListeActions();
         for (Action action : liste) {
-            if (action instanceof ActionSimple) {
-                somme += action.calculerValeurDate(aujourdhui);
-            } else if (action instanceof ActionComposee) {
-                Map<ActionSimple, Double> listeActionsSimples = action.getListActionSimple();
-                listeActionsSimples.forEach((k, v) -> somme += k.calculerValeurDate(aujourdhui));
-            }
+            somme += action.calculerValeurDate(aujourdhui);
         }
         return somme;
     }
