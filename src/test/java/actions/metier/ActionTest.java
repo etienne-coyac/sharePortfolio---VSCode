@@ -146,4 +146,13 @@ class ActionTest {
         });
     }
 
+    @Test
+    void testCalculerValeurDate() {
+        ActionSimple actionTest = new ActionSimple("lib", "nom", "desc");
+        LocalDate date = LocalDate.of(2025, 03, 26);
+        actionTest.enregistrerCours(date, 2);
+        // TO DO
+        //Assertions.assertEquals(2, actionTest.calculerValeurDate(date));
+    }
+
 }

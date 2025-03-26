@@ -2,9 +2,12 @@
 package actions.metier;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 /**
  * Classe ActionSimple héritant de la classe abstraite Action
@@ -39,8 +42,14 @@ public class ActionSimple extends Action {
     }
 
     @Override
-    public double calculerValeurDate(java.util.Date date) {
-        throw new UnsupportedOperationException("Unimplemented method 'calculerValeurDate'");
+    public double calculerValeurDate(Date date) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        for (Cours coursDate : this.cours) {
+            if (coursDate.getDate().equals(localDate)) {
+                return coursDate.getValeur();
+            }
+        }
+        throw new IllegalArgumentException("Aucun cours enregistré pour cette date.");
     }
 
     @Override
