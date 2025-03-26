@@ -2,7 +2,9 @@
 package actions.metier;
 
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Classe Portefeuille pour stocker toutes les actions.
@@ -83,6 +85,26 @@ public class Portefeuille {
      */
     public int getIdentifiant() {
         return identifiant;
+    }
+
+    /**
+     * Retourne la valeur du portefeuille
+     * 
+     * @return La somme des actions dans le portefeuille, pour la date d'aujourd'hui
+     */
+    public double calculerPortefeuille() {
+        double somme = 0;
+        Date aujourdhui = new Date();
+        List<Action> liste = getListeActions();
+        for (Action action : liste) {
+            if (action instanceof ActionSimple) {
+                somme += action.calculerValeurDate(aujourdhui);
+            } else if (action instanceof ActionComposee) {
+                Map<ActionSimple, Double> listeActionsSimples = action.getListActionSimple();
+                listeActionsSimples.forEach((k, v) -> somme += k.calculerValeurDate(aujourdhui));
+            }
+        }
+        return somme;
     }
 
     @Override

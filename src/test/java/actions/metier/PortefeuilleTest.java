@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -65,6 +66,26 @@ class PortefeuilleTest {
     void isEmptyTest(){
         Portefeuille port = new Portefeuille();
         assertTrue(port.isEmpty());
+    }
+
+    @Test
+    void calculerPortefeuilleTest() {
+        Date aujourdhui = new Date();
+        Portefeuille port = new Portefeuille();
+        ActionSimple aS1 = new ActionSimple("action1", "action1", "");
+        ActionSimple aS2 = new ActionSimple("action2", "action2", "");
+        ActionComposee aC1 = new ActionComposee("action3", "action3", "");
+        aC1.addActionsimple(aS2, 20);
+        double sommeTot = 0;
+
+        port.addAction(aC1);
+        port.addAction(aS1);
+        
+        sommeTot += aS1.calculerValeurDate(aujourdhui);
+        for (iterable_type iterable_element : iterable) {
+            
+        }
+
     }
 
     /**
