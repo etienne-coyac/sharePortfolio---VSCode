@@ -74,29 +74,29 @@ public class ActionComposee extends Action {
     }
 
     
-    // public void updatePourcentage(ActionSimple actionSimple, double newPourcentage) {
-    //     if (!ListActionSimple.containsKey(actionSimple)) {
-    //         throw new IllegalArgumentException("L'action n'existe pas dans la liste");
-    //     }
+    public void updatePourcentage(ActionSimple actionSimple, double newPourcentage) {
+        if (!ListActionSimple.containsKey(actionSimple)) {
+            throw new IllegalArgumentException("L'action n'existe pas dans la liste");
+        }
 
-    //     if (newPourcentage > 1.0 || newPourcentage <= 0.0) {
-    //         throw new IllegalArgumentException("Le pourcentage ne peut pas être supérieur à 1 ou inférieur à 0");
-    //     }
+        if (newPourcentage > 1.0 || newPourcentage <= 0.0) {
+            throw new IllegalArgumentException("Le pourcentage ne peut pas être supérieur à 1 ou inférieur à 0");
+        }
 
         
         
-    //     System.out.println("size " + ListActionSimple.size());
-    //     for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
-    //         if (!actionSimple1.equals(actionSimple)) {
-    //             ListActionSimple.put(actionSimple1, ListActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - ListActionSimple.get(actionSimple)));
-    //             System.out.println("action simple : " + actionSimple1.getLibelle());
-    //             System.out.println("pourcentage : " + ListActionSimple.get(actionSimple1));
-    //         }
-    //     }
+        System.out.println("size " + ListActionSimple.size());
+        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
+            if (!actionSimple1.equals(actionSimple)) {
+                ListActionSimple.put(actionSimple1, ListActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - ListActionSimple.get(actionSimple)));
+                System.out.println("action simple : " + actionSimple1.getLibelle());
+                System.out.println("pourcentage : " + ListActionSimple.get(actionSimple1));
+            }
+        }
 
-    //     ListActionSimple.put(actionSimple, newPourcentage);
+        ListActionSimple.put(actionSimple, newPourcentage);
             
-    // }
+    }
 
     public HashMap<ActionSimple, Double> getListActionSimple() {
         return ListActionSimple;
