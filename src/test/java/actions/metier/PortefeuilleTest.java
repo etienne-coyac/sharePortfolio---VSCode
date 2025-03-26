@@ -17,11 +17,26 @@ class PortefeuilleTest {
      */
     @Test
     void testAutoIncrementId() {
+        Portefeuille.resetIdCompteur();
         Portefeuille port1 = new Portefeuille();
         Portefeuille port2 = new Portefeuille();
-
         assertEquals(1, port1.getIdentifiant());
         assertEquals(2, port2.getIdentifiant());
+    }
+
+    /**
+     * Verifie si la methode de reset du compteur d'identifiants fonctionne correctement
+     * Test validé si le résultat du assertEquals est "true"
+     */
+    @Test
+    void testResetIdCompteur_SHOULDPASS(){
+        Portefeuille.resetIdCompteur();
+        Portefeuille port1 = new Portefeuille();
+        assertEquals(1, port1.getIdentifiant());
+        Portefeuille.resetIdCompteur();
+        Portefeuille port2 = new Portefeuille();
+        assertEquals(1, port1.getIdentifiant());
+        assertEquals(1, port2.getIdentifiant());
     }
 
     /**
@@ -31,7 +46,7 @@ class PortefeuilleTest {
     @Test
     void testAddAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("FR2", null, null);
+        ActionSimple act = new ActionSimple("FR2", "NomTest", "descriptionTest");
 
         port.addAction(act);
 
@@ -46,7 +61,7 @@ class PortefeuilleTest {
     @Test
     void testRemoveAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("FR2", null, null);
+        ActionSimple act = new ActionSimple("FR2", "nomTest","descriptionTest");
 
         port.addAction(act);
 
@@ -74,15 +89,16 @@ class PortefeuilleTest {
     @Test
     void isNotEmptyTest(){
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("FR2", null, null);
+        ActionSimple act = new ActionSimple("FR2", "nomTest", "descriptionTest");
         port.addAction(act);
         assertFalse(port.isEmpty());
     }
 
     @Test 
     void toStringTest(){
+        Portefeuille.resetIdCompteur();
         Portefeuille port = new Portefeuille();
-        assertEquals("Portefeuille [identifiant=1 , listeActions=[]]", port.toString());
+        assertEquals("Portefeuille [identifiant=1, listeActions=[]]", port.toString());
     }
 
     @Test
