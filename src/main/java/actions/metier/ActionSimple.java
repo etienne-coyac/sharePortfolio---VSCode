@@ -1,5 +1,8 @@
 
 package actions.metier;
+
+import java.sql.Date;
+
 /**
  * Classe ActionSimple héritant de la classe abstraite Action
  */
@@ -14,11 +17,10 @@ public class ActionSimple extends Action {
         super(libelle, nom, description);
     }
 
-    /**
-     * A reprendre plus tard
-     * @return double
-     */
-    public double calculerValeurDate() {
-        return 0;
+
+    @Override
+    public double calculerValeurDate(java.util.Date date) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'calculerValeurDate'");
     }
 }
