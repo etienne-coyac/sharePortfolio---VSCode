@@ -91,7 +91,7 @@ class PortefeuilleTest {
             sommeTot += action.calculerValeurDate(dateTest);
         }
 
-        assertEquals(10 , sommeTot);
+        assertEquals(10 , sommeTot); //Ne fonctionne pas, car manque le cours
 
     }
 
