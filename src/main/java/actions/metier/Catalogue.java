@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+
 /**
  * Catalogue général d'actions disponibles dans l'application
  */
@@ -68,5 +69,19 @@ public class Catalogue {
             return action.get();
         }
         throw new NoSuchElementException(String.format("L'action %s n'existe pas.", name));
+    }
+
+    /**
+     * Afficher le catalogue des actions (pour l'instant affichage sous forme de log)
+     */
+    public String afficherLeCatalogueDesActions() {
+        StringBuilder builder = new StringBuilder();
+        String enTete = "---------- Liste des actions disponibles : ----------\n";
+        builder.append(enTete);
+        for (Action a : this.actions) {
+            builder.append(a.toString()).append("\n");
+        }
+       
+        return builder.toString();
     }
 }

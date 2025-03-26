@@ -24,7 +24,7 @@ class CatalogueTest {
 
     private Catalogue catalogue;
     private final String testActionName = "testNom";
-    private final Action action = new ActionImpl("testLibelle", testActionName, "testDesc");
+    private final Action action = new ActionImpl("lib1", testActionName, "testDesc");
 
     @BeforeEach
     void createCatalogue() {
@@ -39,7 +39,7 @@ class CatalogueTest {
 
     @Test
     void testActionAlreadyExists() {
-        Action actionDuplicate = new ActionImpl("testLibelle", testActionName, "testDesc");
+        Action actionDuplicate = new ActionImpl("lib1", testActionName, "testDesc");
         assertThrows(IllegalArgumentException.class, () -> {
             catalogue.addAction(actionDuplicate);
         });
@@ -63,5 +63,19 @@ class CatalogueTest {
         catalogue.deleteActionByName(testActionName);
         Assertions.assertEquals(0, catalogue.getActions().size());
     }
+    
 
+    @Test
+    void afficherLeCatalogueDesActionsTest() {
+        Catalogue catalogueTest = new Catalogue();
+        ActionSimple actionTest1 = new ActionSimple("lib1", "nom1", "desc1");
+        ActionSimple actionTest2 = new ActionSimple("lib2", "nom2", "desc2");
+
+        catalogueTest.addAction(actionTest1);
+        catalogueTest.addAction(actionTest2);
+
+        String affichageObtenu = catalogueTest.afficherLeCatalogueDesActions();
+        String affichageAttendu = "---------- Liste des actions disponibles : ----------\n" + actionTest1 +"\n" + actionTest2 + "\n";
+        Assertions.assertEquals(affichageAttendu, affichageObtenu);
+    }
 }

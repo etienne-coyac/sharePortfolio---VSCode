@@ -138,5 +138,11 @@ public class Portefeuille {
             return false;
         return true;
     }
+    /**
+     * Réinitialise le compteur d'identifiant (pour tous les catalogues instanciés)
+     */
+    public static void resetIdCompteur(){
+        Portefeuille.compteur = 0;
+    }
     
 }
