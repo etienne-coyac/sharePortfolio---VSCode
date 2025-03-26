@@ -6,6 +6,7 @@
 - Hongjin Gu
 - Zhan He Zhang
 - Klervi Le Montreer
+- Valeria Villanueva
 
 ### Sonar
 

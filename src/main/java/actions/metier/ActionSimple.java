@@ -38,13 +38,9 @@ public class ActionSimple extends Action {
         return Collections.unmodifiableList(this.cours);
     }
 
-    /**
-     * A reprendre plus tard
-     * 
-     * @return double
-     */
-    public double calculerValeurDate() {
-        return 0;
+    @Override
+    public double calculerValeurDate(java.util.Date date) {
+        throw new UnsupportedOperationException("Unimplemented method 'calculerValeurDate'");
     }
 
     @Override
