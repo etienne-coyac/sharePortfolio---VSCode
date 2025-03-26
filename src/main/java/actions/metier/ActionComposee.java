@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActionComposee extends Action {
-    HashMap<ActionSimple, Double> ListActionSimple;
+    HashMap<ActionSimple, Double> listActionSimple;
     private String libelle;
     private String nom;
     private String description;
 
     public ActionComposee(String libelle, String nom, String description) {
         super(libelle,nom,description);
-        ListActionSimple = new HashMap<ActionSimple, Double>();
+        listActionSimple = new HashMap<ActionSimple, Double>();
     }
 
 
@@ -22,44 +22,43 @@ public class ActionComposee extends Action {
             throw new IllegalArgumentException("Le pourcentage ne peut pas être supérieur à 1 ou inférieur à 0");
         }
 
-        if (ListActionSimple.isEmpty()) {
-            ListActionSimple.put(actionSimple, 1.0d);
+        if (listActionSimple.isEmpty()) {
+            listActionSimple.put(actionSimple, 1.0d);
             return;
         }
 
-        if (ListActionSimple.containsKey(actionSimple)) {
+        if (listActionSimple.containsKey(actionSimple)) {
             throw new IllegalArgumentException("L'action existe déjà dans la liste");
         }
 
 
-        for (Map.Entry<ActionSimple, Double> entry : ListActionSimple.entrySet()) {
+        for (Map.Entry<ActionSimple, Double> entry : listActionSimple.entrySet()) {
             entry.setValue(newPourcentageInsert(pourcentageInsert, entry.getValue()));
         }
-        ListActionSimple.put(actionSimple, pourcentageInsert);
+        listActionSimple.put(actionSimple, pourcentageInsert);
 
     }
 
 
     public void removeActionsimple(ActionSimple actionSimple) throws IllegalArgumentException {
-        if(!ListActionSimple.containsKey(actionSimple)) {
+        if(!listActionSimple.containsKey(actionSimple)) {
             throw new IllegalArgumentException("L'action n'existe pas dans la liste");
         }
 
-        double pourcentageToRemove = ListActionSimple.get(actionSimple);
-        ListActionSimple.remove(actionSimple);
-        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
-            ListActionSimple.put(actionSimple1, newPourcentageRemove(pourcentageToRemove, ListActionSimple.get(actionSimple1)));
+        double pourcentageToRemove = listActionSimple.get(actionSimple);
+        listActionSimple.remove(actionSimple);
+        for (Map.Entry<ActionSimple, Double> entry : listActionSimple.entrySet()) {
+            entry.setValue(newPourcentageRemove(pourcentageToRemove, entry.getValue()));
         }
+        
     }
 
     private double newPourcentageInsert (double pourcentageInsert, double actualPourcentage) {
-        double newPourcentage = actualPourcentage * (1.0d - pourcentageInsert);
-        return newPourcentage;
+        return actualPourcentage * (1.0d - pourcentageInsert);
     }
 
     private double newPourcentageRemove (double pourcentageInsert, double actualPourcentage) {
-        double newPourcentage = actualPourcentage / (1.0d - pourcentageInsert);
-        return newPourcentage;
+        return actualPourcentage / (1.0d - pourcentageInsert);
     }
 
 
@@ -68,7 +67,7 @@ public class ActionComposee extends Action {
         //ici on va calculer la valeur de l'action composée
         //faut implémenter la méthode getValeurByDate dans ActionSimple/cours
         Double valeur = 0.0;
-        for (ActionSimple actionSimple : ListActionSimple.keySet()) {
+        for (ActionSimple actionSimple : listActionSimple.keySet()) {
             // valeur = valeur.add(actionSimple.getValeur(date).multiply(ListActionSimple.get(actionSimple)));
         }
         return valeur;
@@ -76,7 +75,7 @@ public class ActionComposee extends Action {
 
     
     public void updatePourcentage(ActionSimple actionSimple, double newPourcentage) {
-        if (!ListActionSimple.containsKey(actionSimple)) {
+        if (!listActionSimple.containsKey(actionSimple)) {
             throw new IllegalArgumentException("L'action n'existe pas dans la liste");
         }
 
@@ -86,20 +85,36 @@ public class ActionComposee extends Action {
 
         
         
-        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
+        for (ActionSimple actionSimple1 : listActionSimple.keySet()) {
             if (!actionSimple1.equals(actionSimple)) {
-                ListActionSimple.put(actionSimple1, ListActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - ListActionSimple.get(actionSimple)));
+                listActionSimple.put(actionSimple1, listActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - listActionSimple.get(actionSimple)));
             }
         }
 
-        ListActionSimple.put(actionSimple, newPourcentage);
+        listActionSimple.put(actionSimple, newPourcentage);
             
     }
 
     public Map<ActionSimple, Double> getListActionSimple() {
-        return ListActionSimple;
+        return listActionSimple;
+    }
+
+    @Override
+    public String toString() {
+        return "ActionComposee [ " + libelle + " : nom=" + nom + ", description=" + description + "]";
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof ActionComposee)) {
+            return false;
+        }
+        ActionComposee actionComposee = (ActionComposee) o;
+        return actionComposee.getLibelle().equals(libelle);
+    }
 
 }
