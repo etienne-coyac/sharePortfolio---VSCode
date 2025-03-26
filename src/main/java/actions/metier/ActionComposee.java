@@ -85,11 +85,14 @@ public class ActionComposee extends Action {
 
         
         
-        for (ActionSimple actionSimple1 : listActionSimple.keySet()) {
-            if (!actionSimple1.equals(actionSimple)) {
-                listActionSimple.put(actionSimple1, listActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - listActionSimple.get(actionSimple)));
+        double denominator = 1.0d - listActionSimple.get(actionSimple); // 预先计算分母，避免重复计算
+
+        for (Map.Entry<ActionSimple, Double> entry : listActionSimple.entrySet()) {
+            if (!entry.getKey().equals(actionSimple)) {
+            entry.setValue(entry.getValue() * (1.0d - newPourcentage) / denominator);
             }
         }
+
 
         listActionSimple.put(actionSimple, newPourcentage);
             
