@@ -25,6 +25,7 @@ public class ActionComposeeTest {
     String nomSimple3 = "nomSimple3";
     String descriptionSimple3 = "descriptionSimple3";
 
+    @Test
     public void ActionComposeeTest_creation_actionComposee_check_attributs() {
         ActionComposee actionComposee = new ActionComposee(libelle, nom, description);
         Assertions.assertEquals(libelle, actionComposee.getLibelle());
