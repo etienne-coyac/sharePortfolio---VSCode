@@ -1,9 +1,9 @@
 
 package actions.metier;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ActionComposee extends Action {
     HashMap<ActionSimple, Double> ListActionSimple;
@@ -32,10 +32,11 @@ public class ActionComposee extends Action {
         }
 
 
-        for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
-            ListActionSimple.put(actionSimple1, newPourcentageInsert(pourcentageInsert, ListActionSimple.get(actionSimple1)));
+        for (Map.Entry<ActionSimple, Double> entry : ListActionSimple.entrySet()) {
+            entry.setValue(newPourcentageInsert(pourcentageInsert, entry.getValue()));
         }
         ListActionSimple.put(actionSimple, pourcentageInsert);
+
     }
 
 
@@ -85,12 +86,9 @@ public class ActionComposee extends Action {
 
         
         
-        System.out.println("size " + ListActionSimple.size());
         for (ActionSimple actionSimple1 : ListActionSimple.keySet()) {
             if (!actionSimple1.equals(actionSimple)) {
                 ListActionSimple.put(actionSimple1, ListActionSimple.get(actionSimple1) * (1.0d - newPourcentage) / (1.0d - ListActionSimple.get(actionSimple)));
-                System.out.println("action simple : " + actionSimple1.getLibelle());
-                System.out.println("pourcentage : " + ListActionSimple.get(actionSimple1));
             }
         }
 
@@ -98,7 +96,7 @@ public class ActionComposee extends Action {
             
     }
 
-    public HashMap<ActionSimple, Double> getListActionSimple() {
+    public Map<ActionSimple, Double> getListActionSimple() {
         return ListActionSimple;
     }
 

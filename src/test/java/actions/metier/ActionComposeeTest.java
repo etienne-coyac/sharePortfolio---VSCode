@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ActionComposeeTest {
+class ActionComposeeTest {
     
 
     private String libelle = "libC";
@@ -27,10 +27,10 @@ public class ActionComposeeTest {
 
     @Test
     public void ActionComposeeTest_creation_actionComposee_check_attributs() {
-        ActionComposee actionComposee = new ActionComposee(libelle, nom, description);
-        Assertions.assertEquals(libelle, actionComposee.getLibelle());
-        Assertions.assertEquals(nom, actionComposee.getNom());
-        Assertions.assertEquals(description, actionComposee.getDescription());
+        ActionComposee actionComposeeCreateTest = new ActionComposee(libelle, nom, description);
+        Assertions.assertEquals(libelle, actionComposeeCreateTest.getLibelle());
+        Assertions.assertEquals(nom, actionComposeeCreateTest.getNom());
+        Assertions.assertEquals(description, actionComposeeCreateTest.getDescription());
     }
 
     private ActionSimple actionSimple1 = new ActionSimple(libelleSimple1, nomSimple1, descriptionSimple1);
