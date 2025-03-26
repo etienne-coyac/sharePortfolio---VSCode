@@ -31,7 +31,7 @@ class PortefeuilleTest {
     @Test
     void testAddAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("FR2", null, null);
 
         port.addAction(act);
 
@@ -46,7 +46,7 @@ class PortefeuilleTest {
     @Test
     void testRemoveAction() {
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("FR2", null, null);
 
         port.addAction(act);
 
@@ -74,7 +74,7 @@ class PortefeuilleTest {
     @Test
     void isNotEmptyTest(){
         Portefeuille port = new Portefeuille();
-        ActionSimple act = new ActionSimple("France2", null, null);
+        ActionSimple act = new ActionSimple("FR2", null, null);
         port.addAction(act);
         assertFalse(port.isEmpty());
     }
