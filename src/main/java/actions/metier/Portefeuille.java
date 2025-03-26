@@ -20,6 +20,11 @@ public class Portefeuille {
     List<Action> listeActions; 
 
     /**
+     * Attribut représentant le solde du portefeuille.
+     */
+    private double solde;
+
+    /**
      * Constructeur de la classe Portefeuille
      * 
      * @param id Le portefeuille à initialiser
@@ -33,6 +38,22 @@ public class Portefeuille {
          *  Initialise la liste d'actions à vide
          */
         listeActions = new ArrayList<>();
+
+        this.solde = 0;
+    }
+
+    /**
+     * Alimente le solde du portefeuille
+     */
+    public void alimenterPortefeuille(double montant) {
+        this.solde += montant;
+    }
+
+    /**
+     * Renvoie le montant du solde du portefeuille
+     */
+    public double getSolde() {
+        return solde;
     }
 
     /**
